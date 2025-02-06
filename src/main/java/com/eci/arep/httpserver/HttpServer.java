@@ -16,9 +16,17 @@ public class HttpServer {
         System.out.println("Servidor iniciado en el puerto 8080...");
 
         // Agregar rutas de ejemplo usando lambda
-        get("/hello", (req, res) -> "Hello, world!");
-        get("/greet", (req, res) -> "Hello, " + req.getValues("name"));
-        get("/api", (req, res) -> "Hello, " + req.getValues("name"));
+        get("/hello", (req, res) -> "<html><body><h1>Hello, Gymrat!</h1></body></html>");
+        get("/greet", (req, res) -> {
+            String name = req.getValues("name");  // Obtener el parámetro 'name' de la consulta
+            if (name == null || name.isEmpty()) {
+                return "<html><body><h1>Hello, Stranger!</h1></body></html>";
+            } else {
+                return "<html><body><h1>Hello, " + name + "!</h1></body></html>";
+            }
+        });
+
+        get("/api", (req, res) -> "<html><body><h1>Hello, " + req.getValues("name") + "</h1></body></html>");
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
@@ -44,7 +52,13 @@ public class HttpServer {
             } else if (filePath.startsWith("/api/workout")) {
                 handleWorkoutRequest(response, request);
             } else {
-                serveStaticFile(response, filePath);
+                // Si la ruta coincide con alguna definida, usamos la función correspondiente
+                if (routes.containsKey(filePath)) {
+                    String responseBody = routes.get(filePath).apply(request, response);
+                    response.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + responseBody);
+                } else {
+                    serveStaticFile(response, filePath);
+                }
             }
         } catch (IOException e) {
             System.err.println("Error al manejar la solicitud: " + e.getMessage());
@@ -57,7 +71,7 @@ public class HttpServer {
             }
         }
     }
-    
+
     private static void handleWorkoutRequest(Response response, Request request) throws IOException {
         try {
             // Obtener los parámetros de la solicitud
@@ -84,7 +98,7 @@ public class HttpServer {
             jsonResponse.append("{");
             jsonResponse.append("\"name\":\"").append(name.isEmpty() ? "Stranger" : name).append("\",");  // Agregar el nombre al JSON
             jsonResponse.append("\"workout\":[");
-    
+
             // Agregar las rutinas de ejercicios al JSON
             for (int i = 0; i < workout.length; i++) {
                 jsonResponse.append("\"").append(workout[i]).append("\"");
@@ -92,9 +106,9 @@ public class HttpServer {
                     jsonResponse.append(",");
                 }
             }
-    
+
             jsonResponse.append("]}");
-    
+
             // Enviar el JSON como respuesta
             response.sendJson(jsonResponse.toString());
     
@@ -102,7 +116,6 @@ public class HttpServer {
             response.send("HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\nError en la solicitud");
         }
     }
-    
 
     private static void serveStaticFile(Response response, String filePath) throws IOException {
         if (filePath.equals("/")) filePath = "/index.html";
