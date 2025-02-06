@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Workout Planner Http Server
 
 Este proyecto es un servidor HTTP que permite a los usuarios obtener rutinas de entrenamiento dinámicas basadas en tipo (fuerza, cardio, flexibilidad) y nivel (principiante, intermedio, avanzado). También permite servir archivos estáticos como HTML, CSS y JavaScript.
@@ -113,3 +114,6 @@ Deberia salir esto:
 Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo [LICENSE.md](LICENSE.md) para más detalles.
 ## Versión
 Versión 1.0
+=======
+# AREP_TALLER02
+>>>>>>> 9f8274149c048b8c77dc238de9f3426b88429198
