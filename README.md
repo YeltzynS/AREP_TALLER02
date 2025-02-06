@@ -55,13 +55,13 @@ Sigue los pasos a continuación para configurar el entorno de desarrollo:
 1. Clona este repositorio en tu máquina local, probarlo en power shell o en el ide:
 
 ```bash
-git clone <https://github.com/YeltzynS/AREP_TALLER01.git>
+git clone (https://github.com/YeltzynS/AREP_TALLER02.git)>
 ```
 
 2. Navega al directorio del proyecto:
 
 ```bash
-cd AREP_TALLER01
+cd AREP_TALLER02
 ```
 
 3. Ejecuta el servidor HTTP:
@@ -69,16 +69,18 @@ cd AREP_TALLER01
 ```bash
 mvn exec:java 
 ```
-4. En otra terminal ejecuta:
 
-```bash
-mvn test 
-```
-5. Accede al servidor desde tu navegador 
+4. Accede al servidor desde tu navegador 
 ```bash
 http://localhost:8080
 ```
+#  Web Framework Development for REST Services and Static File Management
 
+1. GET Static Method for REST Services:
+Implement a get() method that allows developers to define REST services using lambda functions.
+Example Usage:
+get("/hello", (req, res) -> "hello world!");
+This feature will enable developers to define simple and clear routes within their applications, mapping URLs to specific lambda expressions that handle the requests and responses.
 
 # Workout Planner
 
