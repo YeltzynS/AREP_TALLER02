@@ -82,11 +82,56 @@ Example Usage:
 get("/hello", (req, res) -> "hello world!");
 This feature will enable developers to define simple and clear routes within their applications, mapping URLs to specific lambda expressions that handle the requests and responses.
 
+2. Query Value Extraction Mechanism:
+Develop a mechanism to extract query parameters from incoming requests and make them accessible within the REST services.
+Example Usage:
+get("/hello", (req, res) -> "hello " + req.getValues("name"));
+This functionality will facilitate the creation of dynamic and parameterized REST services, allowing developers to easily access and utilize query parameters within their service implementations.
+
+ Probando con la Url 
+```bash
+http://localhost:8080/greet?name=(PonTuNombre)
+```
+### Lo que debe salir
+
+
+ Probando con la Url 
+```bash
+http://localhost:8080/hello
+```
+### Lo que debe salir
+
+
+Probando con la Url 
+```bash
+http://localhost:8080/api?name=(Tu-Nombre)
+```
+### Lo que debe salir
+
+3. Static File Location Specification:
+Introduce a staticfiles() method that allows developers to define the folder where static files are located.
+Example Usage:
+staticfiles("webroot/public");
+The framework will then look for static files in the specified directory, such as target/classes/webroot/public, making it easier for developers to organize and manage their application's static resources.
 # Workout Planner
 
 Esta es la página principal en la cual podras ver que rutina se amolda a lo que tu quieres.
 Elige el tipo de entrenamiento que quieres y el nivel en el que te encuentras.
 ![image](src/main/resources/img/pagina.png)
+
+### Para probar
+Probando con la Url 
+```bash
+http://localhost:8080/api/workout?type=running&level=beginner&name=(TuNombre)
+```
+### Lo que debe salir
+
+### Tambien puedes probar
+Probando con la Url 
+```bash
+http://localhost:8080/api/workout?type=strength&level=intermediate&name=(TuNombre)
+```
+### Lo que debe salir
 
 Y el resultado sería la rutina que te recomiendan, como lo puede ser esta:
 ![image](src/main/resources/img/resultado.png)
