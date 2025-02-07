@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Workout Planner Http Server
 
 Este proyecto es un servidor HTTP que permite a los usuarios obtener rutinas de entrenamiento dinámicas basadas en tipo (fuerza, cardio, flexibilidad) y nivel (principiante, intermedio, avanzado). También permite servir archivos estáticos como HTML, CSS y JavaScript.
@@ -10,7 +10,9 @@ Este proyecto es un servidor HTTP que permite a los usuarios obtener rutinas de 
 │   ├── main
 │   │   ├── java/com/eci/arep/httpserver
 │   │   │   ├── HttpServer.java         
-│   │   │   ├── WorkoutPlanner.java   
+│   │   │   ├── WorkoutPlanner.java
+|   |   |   |--Request.java
+|   |   |   |--Response.java 
 │   │   ├── resources/
 │   │   │   ├── img
 │   │   │   │   ├── pagina.png             
@@ -93,20 +95,22 @@ This functionality will facilitate the creation of dynamic and parameterized RES
 http://localhost:8080/greet?name=(PonTuNombre)
 ```
 ### Lo que debe salir
-
+![image](src/main/resources/img/saludo.png)
 
  Probando con la Url 
 ```bash
 http://localhost:8080/hello
 ```
 ### Lo que debe salir
-
+![image](src/main/resources/img/saludo2.png)
 
 Probando con la Url 
 ```bash
 http://localhost:8080/api?name=(Tu-Nombre)
 ```
 ### Lo que debe salir
+![image](src/main/resources/img/api.png)
+
 
 3. Static File Location Specification:
 Introduce a staticfiles() method that allows developers to define the folder where static files are located.
@@ -125,6 +129,8 @@ Probando con la Url
 http://localhost:8080/api/workout?type=running&level=beginner&name=(TuNombre)
 ```
 ### Lo que debe salir
+![image](src/main/resources/img/rutinaprincipiante.png)
+
 
 ### Tambien puedes probar
 Probando con la Url 
@@ -132,6 +138,8 @@ Probando con la Url
 http://localhost:8080/api/workout?type=strength&level=intermediate&name=(TuNombre)
 ```
 ### Lo que debe salir
+![image](src/main/resources/img/rutinainter.png)
+
 
 Y el resultado sería la rutina que te recomiendan, como lo puede ser esta:
 ![image](src/main/resources/img/resultado.png)
@@ -144,6 +152,8 @@ mvn test
 ```
 Deberia salir esto: 
 ![image](src/main/resources/img/Pruebas.png)
+![image](src/main/resources/img/pruebas2.png)
+![image](src/main/resources/img/tests.png)
 
 
 ## Se construyo con
@@ -154,7 +164,7 @@ Deberia salir esto:
 
 ## Autor
 
-- **Yeltzyn Sierra** - 
+* **Yeltzyn Kadyr Sierra Aranguren** - *AREP_TALLER02* - [Repositorio](https://github.com/YeltzynS/AREP_TALLER02) 
 
 ## License
 
